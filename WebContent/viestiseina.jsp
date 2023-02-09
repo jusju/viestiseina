@@ -43,7 +43,7 @@
 		}
 		
 		//Collections.reverse(alkiot);
-		for (int i = 0; i < viestit.size(); i++) {
+		for (int i = viestit.size()-1; i >=0 ; i--) {
 			out.println(viestit.get(i));
 		}
 		out.println("</ul>");
