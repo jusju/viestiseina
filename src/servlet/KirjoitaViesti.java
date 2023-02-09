@@ -48,12 +48,12 @@ public class KirjoitaViesti extends HttpServlet {
 		Yhteys yhteys = new Yhteys();
 		yhteys.yhdista();
 		
-		Paivitys paivitys = new Paivitys((Connection) yhteys);
+		Paivitys paivitys = new Paivitys(yhteys.getYhteys());
 		LocalTime aika = LocalTime.now();
 		int tunti= aika.getHour();
 		int minuutti = aika.getMinute();
 		int sekunti = aika.getSecond();
-		paivitys.suoritaSqlLause("INSERT INTO Viestit(viesti) VALUES(<li>[" + tunti + ":" + minuutti + ":" + sekunti + "] " + uusiViesti + "</li>\n");
+		paivitys.suoritaSqlLause("INSERT INTO Viestit(viesti) VALUES(\"[" + tunti + ":" + minuutti + ":" + sekunti + "] " + uusiViesti + "\")\n");
 		
 		yhteys.katkaise();
 		

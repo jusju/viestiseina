@@ -13,8 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="refresh"
-	content="5; URL=http://viestiseina.org/viestiseina.jsp">
+
 <title>Viestiseinä</title>
 </head>
 <body>
@@ -29,14 +28,17 @@
 		out.println("<ul>");
 		String outputti = "";
 		
-		kysely.suoritaYksittainenKysely("SELECT * FROM Viestit");
+		kysely.suoritaYksittainenKysely("SELECT * FROM Viestit;");
 		ArrayList tulokset = kysely.getTulosjoukko();
 				
 		Iterator iter = kysely.getTulosjoukko().iterator();
 		ArrayList viestit = new ArrayList();
 		while (iter.hasNext()) {
 			HashMap viestiMap = (HashMap) iter.next();
-			String viesti = (String)viestiMap.get("viesti");
+			String viesti = "<li>";
+			viesti =  viesti + (String)viestiMap.get("viesti");
+			viesti = viesti + "</li>";
+			
 			viestit.add(viesti);
 		}
 		

@@ -22,7 +22,14 @@ public class Yhteys {
      */
     public void yhdista() {
         // Syntaksi: jdbc:TYPE:machine:port/DB_NAME
-        String url = "jdbc:mysql://localhost:3306/jusju";
+    	String url ="";
+    	try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        url = "jdbc:mysql://localhost:3306/jusju";
 
         // ladataan tietokanta-ajuri
 
@@ -31,7 +38,7 @@ public class Yhteys {
             // Otetaan yhteys tietokantaan
             yhteys =
                 DriverManager.getConnection(
-                    url, "jusju", "zyMUbR82p");
+                    url, "root", "");
         } catch (SQLException ex) {
             kasitteleVirhe(
                 "Virhe tietokantayhteyden avaamisessa", ex);
