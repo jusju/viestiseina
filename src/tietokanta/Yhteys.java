@@ -25,12 +25,7 @@ public class Yhteys {
         String url = "jdbc:mysql://localhost:3306/jusju";
 
         // ladataan tietokanta-ajuri
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (java.lang.ClassNotFoundException ex) {
-            System.out.print("ClassNotFoundException: ");
-            System.out.println(ex.getMessage());
-        }
+
 
         try {
             // Otetaan yhteys tietokantaan
