@@ -38,7 +38,7 @@ public class Yhteys {
             // Otetaan yhteys tietokantaan
             yhteys =
                 DriverManager.getConnection(
-                    url, "root", "");
+                    url, "jukka", "password");
         } catch (SQLException ex) {
             kasitteleVirhe(
                 "Virhe tietokantayhteyden avaamisessa", ex);
