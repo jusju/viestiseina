@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.time.LocalTime;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import tietokanta.Paivitys;
+import tietokanta.Yhteys;
 
 /**
  * Servlet implementation class KirjoitaViesti
@@ -41,7 +45,19 @@ public class KirjoitaViesti extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uusiViesti = request.getParameter("viesti");
-		File tiedosto = new File("/opt/viestit.txt");
+		Yhteys yhteys = new Yhteys();
+		yhteys.yhdista();
+		
+		Paivitys paivitys = new Paivitys((Connection) yhteys);
+		LocalTime aika = LocalTime.now();
+		int tunti= aika.getHour();
+		int minuutti = aika.getMinute();
+		int sekunti = aika.getSecond();
+		paivitys.suoritaSqlLause("INSERT INTO Viestit(viesti) VALUES(<li>[" + tunti + ":" + minuutti + ":" + sekunti + "] " + uusiViesti + "</li>\n");
+		
+		yhteys.katkaise();
+		
+	/*	File tiedosto = new File("/opt/viestit.txt");
 		PrintWriter kahva = new PrintWriter(new FileWriter(tiedosto, true));
 		LocalTime aika = LocalTime.now();
 		int tunti= aika.getHour();
@@ -49,6 +65,8 @@ public class KirjoitaViesti extends HttpServlet {
 		int sekunti = aika.getSecond();
 		kahva.append("<li> ["+tunti + ":" + minuutti + ":" + sekunti + "] " + uusiViesti + "</li>\n");
 		kahva.close();
+		
+		*/
 		//request.setAttribute("viesti", uusiViesti);
 		
 		RequestDispatcher disp = request.getRequestDispatcher("viestiseina.jsp");

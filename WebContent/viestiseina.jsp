@@ -1,7 +1,11 @@
 <%@page import="java.io.File"%>
 <%@page import="java.util.Scanner"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Collections"%>
+<%@page import="tietokanta.Yhteys"%>
+<%@page import="tietokanta.Kysely"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -9,7 +13,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="refresh" content="5; URL=http://viestiseina.org/viestiseina.jsp">
+<meta http-equiv="refresh"
+	content="5; URL=http://viestiseina.org/viestiseina.jsp">
 <title>Viestiseinä</title>
 </head>
 <body>
@@ -18,25 +23,29 @@
 
 
 	<%
-		Scanner lukija = new Scanner(new File("/tmp/viestit.txt"));
+		Yhteys yhteys = new Yhteys();
+		yhteys.yhdista();
+		Kysely kysely = new Kysely(yhteys.getYhteys());
 		out.println("<ul>");
 		String outputti = "";
-		while (lukija.hasNext()) {
-			String yksiRivi = lukija.nextLine();
-			outputti = outputti + yksiRivi;
-			
-			
+		
+		kysely.suoritaYksittainenKysely("SELECT * FROM Viestit");
+		ArrayList tulokset = kysely.getTulosjoukko();
+				
+		Iterator iter = kysely.getTulosjoukko().iterator();
+		ArrayList viestit = new ArrayList();
+		while (iter.hasNext()) {
+			HashMap viestiMap = (HashMap) iter.next();
+			String viesti = (String)viestiMap.get("viesti");
+			viestit.add(viesti);
 		}
-		String[] solut = outputti.split("</li>");
-		ArrayList<String> alkiot = new ArrayList<String>();
-		for(int i = solut.length-1; i >= 0; i--) {
-			alkiot.add(solut[i] + "</li>");
-		}
+		
 		//Collections.reverse(alkiot);
-		for(int i = 0; i < alkiot.size(); i++) {
-			out.println(alkiot.get(i));
+		for (int i = 0; i < viestit.size(); i++) {
+			out.println(viestit.get(i));
 		}
 		out.println("</ul>");
+		yhteys.katkaise();
 	%>
 
 
