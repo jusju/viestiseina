@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<meta http-equiv="refresh" content="5; URL=http://viestiseina.org/viestiseina/viestiseina.jsp">
 <title>Viestisein<E4></title>
 </head>
 <body>
