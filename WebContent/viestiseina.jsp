@@ -19,7 +19,8 @@
 <body>
 <div id="content">
         <img src="images/sil-tunnus-sininen.jpg" width="100" height="100" class="ribbon"/>
-    </div>
+Lis&auml;&auml; viesti klikkaamalla <a href="uudentekstinsyotto.jsp">t&auml;st&auml;</a>.
+</div>
 
         <h1>Viestiseina: kirjoita viesti http://viestiseina.org</h1>
 
@@ -41,7 +42,7 @@
                         HashMap viestiMap = (HashMap) iter.next();
                         String viesti = "<li>";
                         viesti =  viesti + (String)viestiMap.get("viesti");
-                        viesti = viesti + "</li>";
+                                                viesti = viesti + "</li>";
 
                         viestit.add(viesti);
                 }
@@ -58,4 +59,4 @@
 
 </body>
 </html>
-                        
+
