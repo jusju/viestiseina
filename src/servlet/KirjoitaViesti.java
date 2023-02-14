@@ -50,7 +50,7 @@ public class KirjoitaViesti extends HttpServlet {
 		
 		Paivitys paivitys = new Paivitys(yhteys.getYhteys());
 		LocalTime aika = LocalTime.now();
-		int tunti= aika.getHour();
+		int tunti= aika.getHour() + 2;
 		int minuutti = aika.getMinute();
 		int sekunti = aika.getSecond();
 		paivitys.suoritaSqlLause("INSERT INTO Viestit(viesti) VALUES(\"[" + tunti + ":" + minuutti + ":" + sekunti + "] " + uusiViesti + "\")\n");

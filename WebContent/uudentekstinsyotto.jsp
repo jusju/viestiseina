@@ -17,15 +17,23 @@
                         <tr>
                                 <td>Viesti:</td>
                                 <td><input type="text" name="viesti" size="50" length="50">
+
+
+                        </tr>
+                        <tr>
+                                <td>
                                 </td>
                                 <td>
+<input type="submit"  class="btn btn-success"     value="L&auml;het&auml; viesti"></td>
+
+                                </td>
 
                         </tr>
                 </table>
-<input type="submit"  class="btn btn-success"     value="L&auml;het&auml; viesti"></td>
         </form>
 
 
 
 </body>
 </html>
+
